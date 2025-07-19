@@ -197,4 +197,3 @@ taskList.addEventListener("click", (event: Event) => {
     }
   }
 });
-
