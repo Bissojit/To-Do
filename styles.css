@@ -1,84 +1,245 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f4f4f9;
-  }
-  
-  .container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .input-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  #task-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  #add-task {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  #add-task:hover {
-    background: #0056b3;
-  }
-  
-  #task-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .edit-task,
-  .delete-task {
-    background: none;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  .delete-task {
-    color: #ff4d4d;
-  }
-  
-  .edit-task:hover,
-  .delete-task:hover {
-    text-decoration: underline;
-  }
-  
+  background-image: url('https://images.pexels.com/photos/2736499/pexels-photo-2736499.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#add-task {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-task:hover {
+  background: #0056b3;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-checkbox {
+  transform: scale(1.2);
+}
+
+.task-text {
+  flex-grow: 1;
+  margin-right: 5px;
+  word-break: break-word;
+}
+
+/* Style status button like edit button */
+.status-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-btn:hover {
+  text-decoration: underline;
+}
+
+/* Edit and Delete buttons */
+.edit-task,
+.delete-task {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete-task {
+  color: #ff4d4d;
+}
+
+.edit-task:hover,
+.delete-task:hover {
+  text-decoration: underline;
+}
+
+/* Modal overlay */
+#status-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+/* Modal content box */
+#status-modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: default;
+}
+
+#status-modal-content div {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#status-modal-content div:hover {
+  background-color: #f0f0f0;
+}
+
+/* Fancy Checkbox Styling */
+.task-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.task-checkbox:checked {
+  border-color: #4caf50;
+  background-color: #4caf50;
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Note Button */
+.note-button {
+  margin-left: 6px;
+  padding: 3px 7px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  background-color: #ffcd38;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.note-button:hover {
+  background-color: #f4b400;
+}
+
+/* Note Popup */
+.note-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  max-width: 400px;
+  width: 90%;
+}
+
+.note-popup textarea {
+  width: 100%;
+  height: 120px;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.note-popup button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.note-popup button:hover {
+  background-color: #218838;
+}
+
