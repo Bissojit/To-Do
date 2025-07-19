@@ -12,7 +12,7 @@ A modern, feature-rich To-Do List web application built with **TypeScript**, **H
 - Fully responsive design for mobile and desktop
 
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - TypeScript
 - HTML5
